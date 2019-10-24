@@ -12,7 +12,7 @@ module.exports = {
               { artist: { [Op.like]: `%${search}%` } },
               { album: { [Op.like]: `%${search}%` } },
               { genre: { [Op.like]: `%${search}%` } },
-              { author: { [Op.like]: `%${search}%` } }
+              { reviewAuthor: { [Op.like]: `%${search}%` } }
             ]
           }
         });
