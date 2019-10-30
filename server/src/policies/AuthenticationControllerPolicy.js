@@ -3,6 +3,10 @@ module.exports = {
   register(req, res, next) {
     const schema = {
       email: Joi.string().email(),
+      username: Joi.string()
+        .alphanum()
+        .min(3)
+        .max(20),
       password: Joi.string().regex(new RegExp("^[a-zA-Z0-9]{8,64}$"))
     };
     const { error, value } = Joi.validate(req.body, schema);
@@ -11,6 +15,12 @@ module.exports = {
         case "email":
           res.status(400).send({
             error: "The email address is invalid, please try again."
+          });
+          break;
+        case "username":
+          res.status(400).send({
+            error:
+              "The username is invalid, please try again. A username must be between 3 and 30 characters and can only contain alphanumeric characters."
           });
           break;
         case "password":

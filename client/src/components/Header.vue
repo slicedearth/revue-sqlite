@@ -25,7 +25,11 @@
               to="/register"
               class="btn btn-secondary mr-2"
             >Register</router-link>
-            <b-button v-if="$store.state.isUserLoggedIn" @click="logout" class="btn btn-secondary"></b-button>
+            <b-button
+              v-if="$store.state.isUserLoggedIn"
+              @click="logout"
+              class="btn btn-secondary"
+            >Logout</b-button>
           </b-nav-form>
         </b-navbar-nav>
       </b-collapse>

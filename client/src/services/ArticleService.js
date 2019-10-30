@@ -11,13 +11,13 @@ export default {
   postArticles(articles) {
     return Api().post("news", articles);
   },
-  getReviewById(articleId) {
+  getArticleById(articleId) {
     return Api().get(`news/${articleId}`);
   },
   putArticleById(articleId, articles) {
     return Api().put(`news/${articleId}`, articles);
   },
-  deleteReview(articleId) {
+  deleteArticle(articleId) {
     return Api().delete(`news/${articleId}`);
   }
 };

@@ -18,9 +18,9 @@ module.exports = {
         token: jwtSignUser(userJSON)
       });
     } catch (registerErr) {
-      res.status(400).send({
+      req.res.status(400).send({
         error:
-          "Email address already in use. Please enter a different email address."
+          "The email address and/or username are already in use. Please enter a different username/email."
       });
     }
   },

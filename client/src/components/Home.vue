@@ -4,7 +4,7 @@
     <div class="row m-1">
       <div class="col-md-10">
         <h2>News</h2>
-        <div v-for="article in articles" :key="article.id">
+        <div v-for="article in articles.slice(0,6)" :key="article.id">
           <b-card :title="article.articleTitle" tag="reviews" style="max-width: 100%;" class="mb-2">
             <img :src="article.articleIMG" alt />
             <b-card-text>{{article.articleAuthor}}</b-card-text>
@@ -15,7 +15,7 @@
 
       <div class="col-md-2 bg-dark p-2">
         <h2 class="text-white">Latest Reviews</h2>
-        <div v-for="review in reviews.slice(0,3)" :key="review.id">
+        <div v-for="review in reviews.slice(0,4)" :key="review.id">
           <b-card :title="review.reviewTitle" tag="reviews" style="max-width: 100%" class="mb-2">
             <b-card-text>{{review.album}}</b-card-text>
             <b-card-text>{{review.artist}}</b-card-text>
@@ -35,8 +35,8 @@ export default {
   name: "Home",
   data() {
     return {
-      reviews: null,
-      articles: null
+      reviews: "",
+      articles: ""
     };
   },
   watch: {
