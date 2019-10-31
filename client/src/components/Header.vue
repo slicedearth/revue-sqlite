@@ -1,30 +1,20 @@
 <template>
-  <div>
-    <!-- Navbar -->
+  <div class="bg-light">
     <b-navbar toggleable="lg" type="dark" variant="info" fixed="top">
-      <b-navbar-brand href="/">
-        <!-- <img src="../assets/logo.svg" alt /> -->
-        ReVue
-      </b-navbar-brand>
+      <router-link to="/">
+        <b-navbar-brand>ReVue</b-navbar-brand>
+      </router-link>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <router-link to="/news" class="mr-2">News</router-link>
+          <router-link to="/blog" class="mr-2">Blog</router-link>
           <router-link to="/reviews" class="mr-2">Reviews</router-link>
         </b-navbar-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
-            <router-link
-              v-if="!$store.state.isUserLoggedIn"
-              to="/login"
-              class="btn btn-primary mr-2"
-            >Login</router-link>
-            <router-link
-              v-if="!$store.state.isUserLoggedIn"
-              to="/register"
-              class="btn btn-secondary mr-2"
-            >Register</router-link>
+            <Login />
+            <Register />
             <b-button
               v-if="$store.state.isUserLoggedIn"
               @click="logout"
@@ -38,14 +28,35 @@
 </template>
 
 <script>
+import Register from "@/components/Register";
+import Login from "@/components/Login";
 export default {
   name: "Header",
+  components: {
+    Register,
+    Login
+  },
   methods: {
     logout() {
       this.$store.dispatch("setToken", null);
       this.$store.dispatch("setUser", null);
       this.$router.push({ name: "root" });
     }
+    // async register() {
+    //   try {
+    //     const response = await AuthenticationService.register({
+    //       email: this.email,
+    //       username: this.username,
+    //       password: this.password
+    //     });
+    //     console.log(this.$store);
+    //     this.$store.dispatch("setToken", response.data.token);
+    //     this.$store.dispatch("setUser", response.data.user);
+    //     this.$refs["regModal"].hide();
+    //   } catch (error) {
+    //     this.error = error.response.data.error;
+    //   }
+    // }
   }
 };
 </script>

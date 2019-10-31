@@ -2,15 +2,15 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/components/Home";
 import Reviews from "@/components/Reviews";
-import Register from "@/components/Register";
-import Login from "@/components/Login";
+// import Register from "@/components/Register";
+// import Login from "@/components/Login";
 import CreateReview from "@/components/CreateReview";
 import ViewReview from "@/components/ViewReview";
 import EditReview from "@/components/EditReview";
-import Articles from "@/components/Articles";
-import CreateArticle from "@/components/CreateArticle";
-import ViewArticle from "@/components/ViewArticle";
-import EditArticle from "@/components/EditArticle";
+import Blogs from "@/components/Blogs";
+import CreateBlog from "@/components/CreateBlog";
+import ViewBlog from "@/components/ViewBlog";
+import EditBlog from "@/components/EditBlog";
 
 Vue.use(Router);
 export default new Router({
@@ -20,16 +20,16 @@ export default new Router({
       name: "root",
       component: Home
     },
-    {
-      path: "/register",
-      name: "register",
-      component: Register
-    },
-    {
-      path: "/login",
-      name: "login",
-      component: Login
-    },
+    // {
+    //   path: "/register",
+    //   name: "register",
+    //   component: Register
+    // },
+    // {
+    //   path: "/login",
+    //   name: "login",
+    //   component: Login
+    // },
     {
       path: "/reviews",
       name: "reviews",
@@ -51,24 +51,24 @@ export default new Router({
       component: EditReview
     },
     {
-      path: "/news",
-      name: "articles",
-      component: Articles
+      path: "/blog",
+      name: "blogs",
+      component: Blogs
     },
     {
-      path: "/news/create",
-      name: "createarticles",
-      component: CreateArticle
+      path: "/blog/create",
+      name: "createblogs",
+      component: CreateBlog
     },
     {
-      path: "/news/:articleId",
-      name: "viewarticles",
-      component: ViewArticle
+      path: "/blog/:blogId",
+      name: "viewblogs",
+      component: ViewBlog
     },
     {
-      path: "/news/:newsId/edit",
-      name: "editarticles",
-      component: EditArticle
+      path: "/blog/:blogId/edit",
+      name: "editblogs",
+      component: EditBlog
     }
   ]
 });

@@ -1,7 +1,7 @@
 const AuthenticationController = require("./controllers/AuthenticationController");
 const ReviewsController = require("./controllers/ReviewsController");
 const AuthenticationControllerPolicy = require("./policies/AuthenticationControllerPolicy");
-const ArticlesController = require("./controllers/ArticlesController");
+const BlogsController = require("./controllers/BlogsController");
 module.exports = app => {
   // Authentication Routes
   app.post(
@@ -16,10 +16,10 @@ module.exports = app => {
   app.get("/reviews/:reviewId", ReviewsController.getReviewById);
   app.put("/reviews/:reviewId", ReviewsController.putReviewById);
   app.delete("/reviews/:reviewId", ReviewsController.deleteReview);
-  // Article Routes
-  app.get("/news", ArticlesController.getArticles);
-  app.post("/news", ArticlesController.postArticles);
-  app.get("/news/:articleId", ArticlesController.getArticleById);
-  app.put("/news/:articleId", ArticlesController.putArticleById);
-  app.delete("/news/:articleId", ArticlesController.deleteArticle);
+  // Blog Routes
+  app.get("/blog", BlogsController.getBlogs);
+  app.post("/blog", BlogsController.postBlogs);
+  app.get("/blog/:blogId", BlogsController.getBlogById);
+  app.put("/blog/:blogId", BlogsController.putBlogById);
+  app.delete("/blog/:blogId", BlogsController.deleteBlog);
 };
