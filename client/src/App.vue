@@ -4,16 +4,19 @@
     <router-view />
     <!-- <img alt="Vue logo" src="./assets/logo.png" />
     <Home msg="Welcome to Your Vue.js App" />-->
+    <app-footer />
   </div>
 </template>
 
 <script>
 import AppHeader from "@/components/Header";
+import AppFooter from "@/components/Footer";
 
 export default {
   name: "app",
   components: {
-    AppHeader
+    AppHeader,
+    AppFooter
   }
 };
 </script>

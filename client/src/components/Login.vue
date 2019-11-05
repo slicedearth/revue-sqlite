@@ -5,7 +5,7 @@
       v-b-modal.lginModal
       class="btn btn-primary mr-2"
     >Login</button>
-    <b-modal id="lginModal" title="Login" hide-footer>
+    <b-modal id="lginModal" centered title="Login" hide-footer>
       <b-form-input
         name="email"
         type="email"

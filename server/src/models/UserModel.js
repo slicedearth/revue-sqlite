@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
     {
-      username:{
+      username: {
         type: DataTypes.STRING,
         unique: true
       },
@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       return validPassword;
     } catch (pwErr) {
       res.status(400).send({
-        error: "Incorrect password"
+        pwErr: "Incorrect password"
       });
     }
   };

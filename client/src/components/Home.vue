@@ -5,50 +5,61 @@
       lead="Lorem ipsum dolor sit amet consectetur adipisicing elit."
       bg-variant="transparent"
     ></b-jumbotron>
-    <div class="row m-1">
-      <div class="col-md-10">
-        <h2>Latest Reviews</h2>
-        <div v-for="review in reviews.slice(0,4)" :key="review.id">
-          <b-card :title="review.reviewTitle" tag="reviews" style="max-width: 100%" class="mb-2">
-            <b-card-text>{{review.album}}</b-card-text>
-            <b-card-text>{{review.artist}}</b-card-text>
-            <b-card-text>By&nbsp;{{review.reviewAuthor}}</b-card-text>
-            <router-link :to="'/reviews/' +review.id" class="btn btn-primary">Full Review</router-link>
-          </b-card>
-        </div>
-      </div>
-      <div class="col-md-2 bg-dark p-2 sideBlog">
-        <h2 class="text-white">Blog</h2>
-        <div v-for="blog in blogs.slice(0,6)" :key="blog.id">
-          <div class="row p-1 text-white sideBlogContent">
-            <div class="col-md-12">
-              <h5>{{blog.blogTitle}}</h5>
-              <img :src="blog.blogIMG" alt class="img-fluid" style="max-height:2rem" />
-              <p>{{blog.blogAuthor}}</p>
-              <router-link :to="'/blog/' +blog.id" class="btn btn-sm btn-primary">Read More</router-link>
-            </div>
+    <panel title="Latest Reviews">
+      <div class="row m-1">
+        <div class="col-md-12">
+          <div v-for="review in reviews.slice(0,3)" :key="review.id">
+            <b-card
+              :title="review.reviewTitle"
+              tag="reviews"
+              style="max-width: 90%"
+              class="mb-2 mx-auto"
+            >
+              <b-card-text>{{review.album}}</b-card-text>
+              <b-card-text>{{review.artist}}</b-card-text>
+              <b-card-text>By&nbsp;{{review.reviewAuthor}}</b-card-text>
+              <img :src="review.albumArt" alt class="img-fluid p-2" />
+              <br />
+              <router-link :to="'/reviews/' +review.id" class="btn btn-primary">Full Review</router-link>
+            </b-card>
           </div>
-          <!-- <b-card
-            :title="blog.blogTitle"
-            tag="reviews"
-            style="max-width: 100%;height:1rem;"
-            class="mb-2"
-          >
-            <img class="img-fluid" :src="blog.blogIMG" alt />
-            <b-card-text>{{blog.blogAuthor}}</b-card-text>
-            <router-link :to="'/blog/' +blog.id" class="btn btn-primary">Read More</router-link>
-          </b-card>-->
+          <router-link to="/reviews" class="col-md-12 btn btn-primary" id="moreRev">More Reviews</router-link>
         </div>
       </div>
-    </div>
+    </panel>
+    <panel title="Latest Blog Posts">
+      <div class="row m-1">
+        <div class="col-md-12">
+          <div v-for="blog in blogs.slice(0,3)" :key="blog.id">
+            <b-card
+              :src="blog.blogIMG"
+              :title="blog.blogTitle"
+              tag="blogs"
+              style="max-width: 90%"
+              class="mb-2 mx-auto"
+            >
+              <b-card-text>by&nbsp;{{blog.blogAuthor}}</b-card-text>
+              <img :src="blog.blogIMG" alt class="img-fluid p-2" />
+              <br />
+              <router-link :to="'/blog/' +blog.id" class="btn btn-primary">Read Blog</router-link>
+            </b-card>
+          </div>
+          <router-link to="/blog" class="col-md-12 btn btn-primary mx-auto">More Posts</router-link>
+        </div>
+      </div>
+    </panel>
   </div>
 </template>
 
 <script>
 import ReviewService from "@/services/ReviewService";
 import BlogService from "@/services/BlogService";
+import Panel from "@/components/Panel";
 export default {
   name: "Home",
+  components: {
+    Panel
+  },
   data() {
     return {
       reviews: "",
@@ -68,10 +79,7 @@ export default {
 </script>
 
 <style>
-/* .sideBlogContent {
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
-  height: 2rem;
-} */
+#moreRev, #morePosts{
+  
+}
 </style>

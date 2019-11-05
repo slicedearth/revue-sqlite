@@ -1,11 +1,13 @@
 <template>
   <div>
+    <!-- Register Button -->
     <button
       v-if="!$store.state.isUserLoggedIn"
       v-b-modal.regModal
       class="btn btn-secondary mr-2"
     >Register</button>
-    <b-modal id="regModal" title="Register" hide-footer>
+    <!-- Register Modal -->
+    <b-modal id="regModal" centered title="Register" hide-footer>
       <b-form-input
         name="email"
         type="email"
