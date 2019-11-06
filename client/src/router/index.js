@@ -2,8 +2,6 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/components/Home";
 import Reviews from "@/components/Reviews";
-// import Register from "@/components/Register";
-// import Login from "@/components/Login";
 import CreateReview from "@/components/CreateReview";
 import ViewReview from "@/components/ViewReview";
 import EditReview from "@/components/EditReview";
@@ -20,19 +18,9 @@ export default new Router({
       name: "root",
       component: Home
     },
-    // {
-    //   path: "/register",
-    //   name: "register",
-    //   component: Register
-    // },
-    // {
-    //   path: "/login",
-    //   name: "login",
-    //   component: Login
-    // },
     {
       path: "/reviews",
-      name: "reviews",
+      name: "Review",
       component: Reviews
     },
     {
@@ -52,7 +40,7 @@ export default new Router({
     },
     {
       path: "/blog",
-      name: "blogs",
+      name: "Blog",
       component: Blogs
     },
     {

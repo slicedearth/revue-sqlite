@@ -12,7 +12,7 @@
             <b-card
               :title="review.reviewTitle"
               tag="reviews"
-              style="max-width: 80%"
+              style="max-width: 90%"
               class="mb-2 mx-auto"
             >
               <b-card-text>{{review.album}}</b-card-text>
@@ -30,28 +30,26 @@
 </template>
 
 <script>
-import Panel from "@/components/Panel";
 import ReviewService from "@/services/ReviewService";
+import Panel from "@/components/Panel";
 export default {
-  name: "Home",
+  name: "Review",
   components: {
     Panel
   },
   data() {
     return {
-      reviews: null
+      reviews: ""
     };
   },
-  watch: {
-    "$route.query.search": {
-      immediate: true,
-      async handler(value) {
-        this.reviews = (await ReviewService.getReviews(value)).data;
-      }
-    }
+  async mounted() {
+    this.reviews = (await ReviewService.getReviews()).data;
   }
 };
 </script>
 
 <style>
+/* #moreRev,
+#morePosts {
+} */
 </style>

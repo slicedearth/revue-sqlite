@@ -5,6 +5,7 @@
       lead="Lorem ipsum dolor sit amet consectetur adipisicing elit."
       bg-variant="transparent"
     ></b-jumbotron>
+    <!-- Review Section -->
     <panel title="Latest Reviews">
       <div class="row m-1">
         <div class="col-md-12">
@@ -23,28 +24,32 @@
               <router-link :to="'/reviews/' +review.id" class="btn btn-primary">Full Review</router-link>
             </b-card>
           </div>
-          <router-link to="/reviews" class="col-md-12 btn btn-primary" id="moreRev">More Reviews</router-link>
+          <router-link
+            to="/reviews"
+            class="col-md-12 btn btn-primary mb-2 mx-auto"
+            id="moreRev"
+            style="max-width:90%"
+          >See More</router-link>
         </div>
       </div>
     </panel>
+    <!-- Blog Section -->
     <panel title="Latest Blog Posts">
       <div class="row m-1">
         <div class="col-md-12">
           <div v-for="blog in blogs.slice(0,3)" :key="blog.id">
-            <b-card
-              :src="blog.blogIMG"
-              :title="blog.blogTitle"
-              tag="blogs"
-              style="max-width: 90%"
-              class="mb-2 mx-auto"
-            >
+            <b-card :title="blog.blogTitle" tag="blogs" style="max-width: 90%" class="mb-2 mx-auto">
               <b-card-text>by&nbsp;{{blog.blogAuthor}}</b-card-text>
               <img :src="blog.blogIMG" alt class="img-fluid p-2" />
               <br />
               <router-link :to="'/blog/' +blog.id" class="btn btn-primary">Read Blog</router-link>
             </b-card>
           </div>
-          <router-link to="/blog" class="col-md-12 btn btn-primary mx-auto">More Posts</router-link>
+          <router-link
+            to="/blog"
+            class="col-md-12 btn btn-primary mb-2 mx-auto"
+            style="max-width:90%"
+          >See More</router-link>
         </div>
       </div>
     </panel>
@@ -56,7 +61,7 @@ import ReviewService from "@/services/ReviewService";
 import BlogService from "@/services/BlogService";
 import Panel from "@/components/Panel";
 export default {
-  name: "Home",
+  name: "Review",
   components: {
     Panel
   },
@@ -66,20 +71,15 @@ export default {
       blogs: ""
     };
   },
-  watch: {
-    "$route.query.search": {
-      immediate: true,
-      async handler(value) {
-        this.reviews = (await ReviewService.getReviews(value)).data;
-        this.blogs = (await BlogService.getBlogs(value)).data;
-      }
-    }
+  async mounted() {
+    this.reviews = (await ReviewService.getReviews()).data;
+    this.blogs = (await BlogService.getBlogs()).data;
   }
 };
 </script>
 
 <style>
-#moreRev, #morePosts{
-  
-}
+/* #moreRev,
+#morePosts {
+} */
 </style>
