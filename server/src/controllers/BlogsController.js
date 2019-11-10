@@ -17,7 +17,7 @@ module.exports = {
         });
       } else {
         blogs = await Blog.findAll({
-          limit: 9
+          limit: 50
         });
       }
       res.send(blogs);

@@ -20,7 +20,7 @@ module.exports = {
         case "username":
           res.status(400).send({
             error:
-              "The username is invalid, please try again. A username must be between 3 and 30 characters and can only contain alphanumeric characters."
+              "The username is invalid, please try again. A username must be between 3 and 20 characters and can only contain alphanumeric characters."
           });
           break;
         case "password":

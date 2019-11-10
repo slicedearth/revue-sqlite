@@ -18,7 +18,7 @@ module.exports = {
         });
       } else {
         reviews = await Review.findAll({
-          limit: 9
+          limit: 50
         });
       }
       res.send(reviews);

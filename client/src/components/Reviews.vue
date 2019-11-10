@@ -1,6 +1,11 @@
 <template>
   <div>
     <panel title="Reviews">
+      <div class="row m-1">
+        <div class="col-md-12 mb-2 mx-auto" style="max-width:90%">
+          <SearchReviews />
+        </div>
+      </div>
       <router-link
         v-if="$store.state.isUserLoggedIn"
         to="/reviews/create"
@@ -30,20 +35,27 @@
 </template>
 
 <script>
+import SearchReviews from "@/components/SearchReviews";
 import ReviewService from "@/services/ReviewService";
 import Panel from "@/components/Panel";
 export default {
   name: "Review",
   components: {
-    Panel
+    Panel,
+    SearchReviews
   },
   data() {
     return {
       reviews: ""
     };
   },
-  async mounted() {
-    this.reviews = (await ReviewService.getReviews()).data;
+  watch: {
+    "$route.query.search": {
+      immediate: true,
+      async handler(value) {
+        this.reviews = (await ReviewService.getReviews(value)).data;
+      }
+    }
   }
 };
 </script>

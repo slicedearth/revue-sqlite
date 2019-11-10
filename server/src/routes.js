@@ -2,6 +2,8 @@ const AuthenticationController = require("./controllers/AuthenticationController
 const ReviewsController = require("./controllers/ReviewsController");
 const AuthenticationControllerPolicy = require("./policies/AuthenticationControllerPolicy");
 const BlogsController = require("./controllers/BlogsController");
+const ReviewsControllerPolicy = require("./policies/ReviewsControllerPolicy");
+const BlogsControllerPolicy = require("./policies/BlogsControllerPolicy");
 module.exports = app => {
   // Authentication Routes
   app.post(
@@ -12,14 +14,26 @@ module.exports = app => {
   app.post("/login", AuthenticationController.login);
   // Review Routes
   app.get("/reviews", ReviewsController.getReviews);
-  app.post("/reviews", ReviewsController.postReviews);
+  app.post(
+    "/reviews",
+    ReviewsControllerPolicy.postReviews,
+    ReviewsController.postReviews
+  );
   app.get("/reviews/:reviewId", ReviewsController.getReviewById);
-  app.put("/reviews/:reviewId", ReviewsController.putReviewById);
+  app.put(
+    "/reviews/:reviewId",
+    ReviewsControllerPolicy.putReviewById,
+    ReviewsController.putReviewById
+  );
   app.delete("/reviews/:reviewId", ReviewsController.deleteReview);
   // Blog Routes
   app.get("/blog", BlogsController.getBlogs);
-  app.post("/blog", BlogsController.postBlogs);
+  app.post("/blog", BlogsControllerPolicy.postBlogs, BlogsController.postBlogs);
   app.get("/blog/:blogId", BlogsController.getBlogById);
-  app.put("/blog/:blogId", BlogsController.putBlogById);
+  app.put(
+    "/blog/:blogId",
+    BlogsControllerPolicy.putBlogById,
+    BlogsController.putBlogById
+  );
   app.delete("/blog/:blogId", BlogsController.deleteBlog);
 };

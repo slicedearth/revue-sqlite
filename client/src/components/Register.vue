@@ -58,7 +58,7 @@ export default {
           username: this.username,
           password: this.password
         });
-        console.log(this.$store);
+        // console.log(this.$store);
         this.$store.dispatch("setToken", response.data.token);
         this.$store.dispatch("setUser", response.data.user);
       } catch (error) {

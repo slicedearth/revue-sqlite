@@ -1,9 +1,14 @@
 <template>
   <div>
     <panel title="Blog">
+      <div class="row m-1">
+        <div class="col-md-12 mb-2 mx-auto" style="max-width:90%">
+          <SearchBlogs />
+        </div>
+      </div>
       <router-link
         v-if="$store.state.isUserLoggedIn"
-        to="/blogs/create"
+        to="/blog/create"
         class="btn btn-warning mr-2 w-100 mb-3"
       >Create Blog Post</router-link>
       <div class="row m-1">
@@ -23,20 +28,27 @@
 </template>
 
 <script>
+import SearchBlogs from "@/components/SearchBlogs";
 import BlogService from "@/services/BlogService";
 import Panel from "@/components/Panel";
 export default {
   name: "Blog",
   components: {
-    Panel
+    Panel,
+    SearchBlogs
   },
   data() {
     return {
       blogs: ""
     };
   },
-  async mounted() {
-    this.blogs = (await BlogService.getBlogs()).data;
+  watch: {
+    "$route.query.search": {
+      immediate: true,
+      async handler(value) {
+        this.blogs = (await BlogService.getBlogs(value)).data;
+      }
+    }
   }
 };
 </script>

@@ -1,8 +1,12 @@
 import Api from "@/services/Api";
 
 export default {
-  getReviews() {
-    return Api().get("reviews");
+  getReviews(search) {
+    return Api().get("reviews",{
+      params:{
+        search:search
+      }
+    });
   },
   postReviews(reviews) {
     return Api().post("reviews", reviews);

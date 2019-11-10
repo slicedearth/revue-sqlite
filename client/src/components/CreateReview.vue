@@ -42,7 +42,7 @@
               ></b-form-input>
               <b-form-invalid-feedback
                 id="author-feedback"
-              >This field is required and must contain at least 2 characters.</b-form-invalid-feedback>
+              >This field is required and must contain between 3 and 20 alphanumeric characters.</b-form-invalid-feedback>
             </b-form-group>
             <!-- Album -->
             <b-form-group
@@ -159,7 +159,12 @@
 import ReviewService from "@/services/ReviewService";
 import Panel from "@/components/Panel";
 import { validationMixin } from "vuelidate";
-import { required, minLength } from "vuelidate/lib/validators";
+import {
+  required,
+  minLength,
+  maxLength,
+  alphaNum
+} from "vuelidate/lib/validators";
 export default {
   name: "CreateReview",
   components: {
@@ -183,7 +188,8 @@ export default {
     review: {
       reviewTitle: {
         required,
-        minLength: minLength(5)
+        minLength: minLength(5),
+        maxLength: maxLength(40)
       },
       albumArt: {
         required,
@@ -191,7 +197,9 @@ export default {
       },
       reviewAuthor: {
         required,
-        minLength: minLength(2)
+        minLength: minLength(3),
+        maxLength: maxLength(20),
+        alphaNum: alphaNum
       },
       album: {
         required,
