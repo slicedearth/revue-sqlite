@@ -126,7 +126,7 @@ export default {
       blogTitle: {
         required,
         minLength: minLength(5),
-        maxLength: maxLength(40)
+        maxLength: maxLength(150)
       },
       blogIMG: {
         required,
