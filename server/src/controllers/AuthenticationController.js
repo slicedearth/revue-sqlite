@@ -9,6 +9,7 @@ function jwtSignUser(user) {
   });
 }
 module.exports = {
+  // Register
   async register(req, res) {
     try {
       const user = await User.create(req.body);
@@ -24,6 +25,7 @@ module.exports = {
       });
     }
   },
+  // Login
   async login(req, res) {
     try {
       const { email, password } = req.body;
@@ -53,6 +55,28 @@ module.exports = {
         error:
           "An error has occurred while trying to login. If the problem persists, please contact us."
       });
+    }
+  },
+  // Verify
+  verifyToken(req, res, next) {
+    const authHeader = req.headers["authorization"];
+    if (typeof authHeader !== "undefined") {
+      const auth = authHeader.split(" ");
+      const authToken = auth[1];
+      req.token = authToken;
+      next();
+    } else {
+      res.sendStatus(403);
+    }
+    // return jwt.verify(token, config.authentication.jwtSecret);
+  },
+  // Verify User
+  verifyUserToken(req, res, next) {
+    verifyToken();
+    if (user.username == review.reviewAuthor) {
+      next();
+    } else {
+      res.sendStatus(403);
     }
   }
 };

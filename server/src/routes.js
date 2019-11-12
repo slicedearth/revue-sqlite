@@ -16,6 +16,7 @@ module.exports = app => {
   app.get("/reviews", ReviewsController.getReviews);
   app.post(
     "/reviews",
+    AuthenticationController.verifyToken,
     ReviewsControllerPolicy.postReviews,
     ReviewsController.postReviews
   );
