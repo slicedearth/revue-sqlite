@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-info">
+  <footer class="bg-info position-fixed-bottom">
     <div class="col-md-12">
       <a href="https://www.facebook.com">
         <i class="fa fa-facebook" aria-hidden="true"></i>

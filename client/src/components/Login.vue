@@ -2,10 +2,10 @@
   <div>
     <button
       v-if="!$store.state.isUserLoggedIn"
-      v-b-modal.lginModal
+      @click="showModal"
       class="btn btn-primary mr-2"
     >Login</button>
-    <b-modal id="lginModal" centered title="Login" hide-footer>
+    <b-modal ref="lginModal" centered title="Login" hide-footer>
       <b-form-input
         name="email"
         type="email"
@@ -41,6 +41,9 @@ export default {
     };
   },
   methods: {
+    showModal() {
+      this.$refs["lginModal"].show();
+    },
     async login() {
       try {
         const response = await AuthenticationService.login({
@@ -49,6 +52,7 @@ export default {
         });
         this.$store.dispatch("setToken", response.data.token);
         this.$store.dispatch("setUser", response.data.user);
+        this.$refs["lginModal"].hide();
       } catch (error) {
         this.error = error.response.data.error;
       }

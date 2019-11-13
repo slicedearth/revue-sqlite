@@ -31,7 +31,7 @@ export default new Router({
     },
     {
       path: "/reviews/:reviewId",
-      name: "viewreview",
+      name: "ViewReview",
       component: ViewReview
     },
     {
@@ -59,5 +59,10 @@ export default new Router({
       name: "editblogs",
       component: EditBlog
     }
+    // {
+    //   path: "/user/:userId",
+    //   name: "user",
+    //   component: User
+    // }
   ]
 });

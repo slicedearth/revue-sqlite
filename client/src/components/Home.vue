@@ -61,7 +61,7 @@ import ReviewService from "@/services/ReviewService";
 import BlogService from "@/services/BlogService";
 import Panel from "@/components/Panel";
 export default {
-  name: "Review",
+  name: "root",
   components: {
     Panel
   },

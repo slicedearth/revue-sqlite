@@ -119,9 +119,10 @@
                 :state="$v.review.albumArt.$dirty?!$v.review.albumArt.$error:null"
                 aria-describedby="albumArt-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback
-                id="albumArt-feedback"
-              >This field is required. You must provide a link to an image.</b-form-invalid-feedback>
+              <b-form-invalid-feedback id="albumArt-feedback">
+                This field is required. You must provide a direct link to an image. The link must contain http:// or https://
+                <br />(eg. https://images.unsplash.com/photo-1573061598644-36432d1a4198
+              </b-form-invalid-feedback>
             </b-form-group>
             <!-- Review Text -->
             <b-form-group
@@ -163,7 +164,8 @@ import {
   required,
   minLength,
   maxLength,
-  alphaNum
+  alphaNum,
+  url
 } from "vuelidate/lib/validators";
 export default {
   name: "CreateReview",
@@ -193,6 +195,7 @@ export default {
       },
       albumArt: {
         required,
+        url: url,
         minLength: minLength(5)
       },
       reviewAuthor: {
@@ -226,7 +229,7 @@ export default {
         return;
       }
       try {
-        await ReviewService.postReviews(this.review);
+        await ReviewService.postReviews(this.review, this.$store.state.token);
         this.$router.push({
           name: "Review"
         });

@@ -163,7 +163,8 @@ import {
   required,
   minLength,
   maxLength,
-  alphaNum
+  alphaNum,
+  url
 } from "vuelidate/lib/validators";
 export default {
   name: "EditReview",

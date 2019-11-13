@@ -12,15 +12,13 @@
         </b-navbar-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-            <Login />
-            <Register />
-            <b-button
-              v-if="$store.state.isUserLoggedIn"
-              @click="logout"
-              class="btn btn-secondary"
-            >Logout</b-button>
-          </b-nav-form>
+          <Login />
+          <Register />
+          <b-button
+            v-if="$store.state.isUserLoggedIn"
+            @click="logout"
+            class="btn btn-secondary"
+          >Logout</b-button>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -40,23 +38,9 @@ export default {
     logout() {
       this.$store.dispatch("setToken", null);
       this.$store.dispatch("setUser", null);
-      this.$router.push({ name: "root" });
+      // this.$router.push({ name: "root" }).catch(err => {});
+      this.$router.go("/");
     }
-    // async register() {
-    //   try {
-    //     const response = await AuthenticationService.register({
-    //       email: this.email,
-    //       username: this.username,
-    //       password: this.password
-    //     });
-    //     console.log(this.$store);
-    //     this.$store.dispatch("setToken", response.data.token);
-    //     this.$store.dispatch("setUser", response.data.user);
-    //     this.$refs["regModal"].hide();
-    //   } catch (error) {
-    //     this.error = error.response.data.error;
-    //   }
-    // }
   }
 };
 </script>

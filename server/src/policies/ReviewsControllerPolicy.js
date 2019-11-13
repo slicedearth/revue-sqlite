@@ -72,7 +72,7 @@ module.exports = {
   putReviewById(req, res, next) {
     const schema = {
       reviewTitle: Joi.string()
-        .min(5)
+        .min(10)
         .max(40),
       reviewAuthor: Joi.string()
         .alphanum()
@@ -84,7 +84,17 @@ module.exports = {
       genre: Joi.string().min(1),
       reviewText: Joi.string().min(15)
     };
-    const { error, value } = Joi.validate(req.body, schema);
+    const revUpd = {
+      reviewTitle: req.body.reviewTitle,
+      reviewAuthor: req.body.reviewAuthor,
+      albumArt: req.body.albumArt,
+      album: req.body.album,
+      artist: req.body.artist,
+      genre: req.body.genre,
+      reviewText: req.body.reviewText
+    };
+    const { error, value } = Joi.validate(revUpd, schema);
+    console.log(error);
     if (error) {
       switch (error.details[0].context.key) {
         case "reviewTitle":

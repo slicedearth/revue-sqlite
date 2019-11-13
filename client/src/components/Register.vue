@@ -3,11 +3,11 @@
     <!-- Register Button -->
     <button
       v-if="!$store.state.isUserLoggedIn"
-      v-b-modal.regModal
+      @click="showModal"
       class="btn btn-secondary mr-2"
     >Register</button>
     <!-- Register Modal -->
-    <b-modal id="regModal" centered title="Register" hide-footer>
+    <b-modal ref="regModal" centered title="Register" hide-footer>
       <b-form-input
         name="email"
         type="email"
@@ -51,6 +51,9 @@ export default {
     };
   },
   methods: {
+    showModal() {
+      this.$refs["regModal"].show();
+    },
     async register() {
       try {
         const response = await AuthenticationService.register({
@@ -61,6 +64,7 @@ export default {
         // console.log(this.$store);
         this.$store.dispatch("setToken", response.data.token);
         this.$store.dispatch("setUser", response.data.user);
+        this.$refs["regModal"].hide();
       } catch (error) {
         this.error = error.response.data.error;
       }

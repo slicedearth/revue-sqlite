@@ -32,6 +32,11 @@
         :to="'/reviews/' + review.id + '/edit'"
         class="mr-2 w-100 btn btn-success"
       >Edit</router-link>
+      <b-button
+        v-if="$store.state.isUserLoggedIn"
+        @click="deleteRev"
+        class="btn btn-secondary w-100 mr-2"
+      >Delete</b-button>
     </panel>
   </div>
 </template>
@@ -49,6 +54,15 @@ export default {
       review: null
     };
   },
+  // async deleteRev() {
+  //   try {
+  //     this.review = await ReviewService.deleteReview(this.review.id);
+  //     this.review = null;
+  //     console.log("remove");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // },
   async mounted() {
     try {
       const reviewId = this.$store.state.route.params.reviewId;
