@@ -11,20 +11,22 @@ export default {
   postReviews(reviews, token) {
     // console.log(token);
     return Api().post("reviews", reviews, {
-      headers: { Authorization: "Bearers" + token }
+      headers: { Authorization: "Bearer " + token }
     });
   },
-  getReviewById(reviewId) {
-    return Api().get(`reviews/${reviewId}`);
+  getReviewById(reviewId, token) {
+    return Api().get(`reviews/${reviewId}`, {
+      headers: { Authorization: "Bearer " + token }
+    });
   },
   putReviewById(reviewId, reviews, token) {
     return Api().put(`reviews/${reviewId}`, reviews, {
-      headers: { Authorization: "Bearers" + token }
+      headers: { Authorization: "Bearer " + token }
     });
   },
   deleteReview(reviewId, token) {
     return Api().delete(`reviews/${reviewId}`, {
-      headers: { Authorization: "Bearers" + token }
+      headers: { Authorization: "Bearer " + token }
     });
   }
 };

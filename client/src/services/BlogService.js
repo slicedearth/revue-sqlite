@@ -9,7 +9,7 @@ export default {
   },
   postBlogs(blogs, token) {
     return Api().post("blog", blogs, {
-      headers: { Authorization: "Bearers" + token }
+      headers: { Authorization: "Bearer " + token }
     });
   },
   getBlogById(blogId) {
@@ -17,12 +17,12 @@ export default {
   },
   putBlogById(blogId, blogs, token) {
     return Api().put(`blog/${blogId}`, blogs, {
-      headers: { Authorization: "Bearers" + token }
+      headers: { Authorization: "Bearer " + token }
     });
   },
   deleteBlog(blogId, token) {
     return Api().delete(`blog/${blogId}`, {
-      headers: { Authorization: "Bearers" + token }
+      headers: { Authorization: "Bearer " + token }
     });
   }
 };

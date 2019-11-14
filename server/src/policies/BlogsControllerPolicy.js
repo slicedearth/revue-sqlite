@@ -4,7 +4,7 @@ module.exports = {
     const schema = {
       blogTitle: Joi.string()
         .min(5)
-        .max(40),
+        .max(150),
       blogAuthor: Joi.string()
         .alphanum()
         .min(3)
@@ -52,7 +52,7 @@ module.exports = {
     const schema = {
       blogTitle: Joi.string()
         .min(5)
-        .max(40),
+        .max(150),
       blogAuthor: Joi.string()
         .alphanum()
         .min(3)
@@ -60,7 +60,13 @@ module.exports = {
       blogIMG: Joi.string().uri(),
       blogText: Joi.string().min(15)
     };
-    const { error, value } = Joi.validate(req.body, schema);
+    const blogUpd = {
+      blogTitle: req.body.blogTitle,
+      blogAuthor: req.body.blogAuthor,
+      blogIMG: req.body.blogIMG,
+      blogText: req.body.blogText
+    };
+    const { error, value } = Joi.validate(blogUpd, schema);
     if (error) {
       switch (error.details[0].context.key) {
         case "blogTitle":

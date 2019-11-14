@@ -17,12 +17,15 @@
                 required
                 placeholder="Enter Title"
                 v-model="$v.blog.blogTitle.$model"
-                :state="$v.blog.blogTitle.$dirty?!$v.blog.blogTitle.$error:null"
+                :state="
+                  $v.blog.blogTitle.$dirty ? !$v.blog.blogTitle.$error : null
+                "
                 aria-describedby="title-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback
-                id="title-feedback"
-              >This field is required and must contain at least 5 characters.</b-form-invalid-feedback>
+              <b-form-invalid-feedback id="title-feedback"
+                >This field is required and must contain at least 5
+                characters.</b-form-invalid-feedback
+              >
             </b-form-group>
             <!-- Author -->
             <b-form-group
@@ -37,12 +40,15 @@
                 required
                 placeholder="Enter Username"
                 v-model="$v.blog.blogAuthor.$model"
-                :state="$v.blog.blogAuthor.$dirty? !$v.blog.blogAuthor.$error:null"
+                :state="
+                  $v.blog.blogAuthor.$dirty ? !$v.blog.blogAuthor.$error : null
+                "
                 aria-describedby="author-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback
-                id="author-feedback"
-              >This field is required and must contain between 3 and 20 alphanumeric characters.</b-form-invalid-feedback>
+              <b-form-invalid-feedback id="author-feedback"
+                >This field is required and must contain between 3 and 20
+                alphanumeric characters.</b-form-invalid-feedback
+              >
             </b-form-group>
             <!-- Blog Image -->
             <b-form-group
@@ -56,12 +62,13 @@
                 type="text"
                 required
                 v-model="$v.blog.blogIMG.$model"
-                :state="$v.blog.blogIMG.$dirty?!$v.blog.blogIMG.$error:null"
+                :state="$v.blog.blogIMG.$dirty ? !$v.blog.blogIMG.$error : null"
                 aria-describedby="blogIMG-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback
-                id="blogIMG-feedback"
-              >This field is required. You must provide a link to an image.</b-form-invalid-feedback>
+              <b-form-invalid-feedback id="blogIMG-feedback"
+                >This field is required. You must provide a link to an
+                image.</b-form-invalid-feedback
+              >
             </b-form-group>
             <!-- Blog Text -->
             <b-form-group
@@ -78,12 +85,15 @@
                 rows="10"
                 max-rows="15"
                 v-model="$v.blog.blogText.$model"
-                :state="$v.blog.blogText.$dirty?!$v.blog.blogText.$error:null"
+                :state="
+                  $v.blog.blogText.$dirty ? !$v.blog.blogText.$error : null
+                "
                 aria-describedby="blogText-feedback"
               ></b-form-textarea>
-              <b-form-invalid-feedback
-                id="blogText-feedback"
-              >This field is required and must contain at least 15 characters.</b-form-invalid-feedback>
+              <b-form-invalid-feedback id="blogText-feedback"
+                >This field is required and must contain at least 15
+                characters.</b-form-invalid-feedback
+              >
             </b-form-group>
             <div class="col-12">
               <b-button @click="save" class="w-100">Submit</b-button>
@@ -153,10 +163,11 @@ export default {
       try {
         await BlogService.putBlogById(
           this.$store.state.route.params.blogId,
-          this.blog
+          this.blog,
+          this.$store.state.token
         );
         this.$router.push({
-          name: "Blog",
+          name: "viewblogs",
           params: {
             blogId: this.$store.state.route.params.blogId
           }
@@ -177,5 +188,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

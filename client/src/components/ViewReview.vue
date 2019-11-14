@@ -12,31 +12,33 @@
         </div>
         <div class="col-md-12 mt-3">
           <b>By:</b>
-          {{review.reviewAuthor}}
+          {{ review.reviewAuthor }}
         </div>
         <div class="col-md-12 mt-3">
           <b>Album:</b>
-          {{review.album}}
+          {{ review.album }}
           <b>Artist:</b>
-          {{review.artist}}
+          {{ review.artist }}
         </div>
 
         <br />
 
         <div class="col-md-12 m-auto">
-          <p class="mt-2">{{review.reviewText}}</p>
+          <p class="mt-2">{{ review.reviewText }}</p>
         </div>
       </div>
       <router-link
         v-if="$store.state.isUserLoggedIn"
         :to="'/reviews/' + review.id + '/edit'"
         class="mr-2 w-100 btn btn-success"
-      >Edit</router-link>
+        >Edit</router-link
+      >
       <b-button
         v-if="$store.state.isUserLoggedIn"
-        @click="deleteRev"
+        @click="delRev"
         class="btn btn-secondary w-100 mr-2"
-      >Delete</b-button>
+        >Delete</b-button
+      >
     </panel>
   </div>
 </template>
@@ -54,25 +56,40 @@ export default {
       review: null
     };
   },
-  // async deleteRev() {
-  //   try {
-  //     this.review = await ReviewService.deleteReview(this.review.id);
-  //     this.review = null;
-  //     console.log("remove");
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
+  methods: {
+    async delRev() {
+      try {
+        // eslint-disable-next-line
+        console.log("delete");
+        this.review = await ReviewService.deleteReview(
+          this.review.id,
+          this.$store.state.token
+        );
+        this.review = null;
+        // eslint-disable-next-line
+        console.log("remove");
+        this.$router.push({
+          name: "Review"
+        });
+      } catch (err) {
+        // eslint-disable-next-line
+        console.log(err);
+      }
+    }
+  },
+
   async mounted() {
     try {
       const reviewId = this.$store.state.route.params.reviewId;
-      this.review = (await ReviewService.getReviewById(reviewId)).data;
+      this.review = (
+        await ReviewService.getReviewById(reviewId, this.$store.state.token)
+      ).data;
     } catch (err) {
+      // eslint-disable-next-line
       console.log(err);
     }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

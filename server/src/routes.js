@@ -26,7 +26,11 @@ module.exports = app => {
     ReviewsControllerPolicy.postReviews,
     ReviewsController.postReviews
   );
-  app.get("/reviews/:reviewId", ReviewsController.getReviewById);
+  app.get(
+    "/reviews/:reviewId",
+    AuthenticationController.verifyToken,
+    ReviewsController.getReviewById
+  );
   app.put(
     "/reviews/:reviewId",
     AuthenticationController.verifyToken,

@@ -4,7 +4,7 @@ const config = require("../config/config");
 
 function jwtSignUser(user) {
   const tokenExpiryTime = 60 * 60 * 24 * 7;
-  return jwt.sign(user, config.authentication.jwtSecret, {
+  return jwt.sign(user, config.jwtSecret, {
     expiresIn: tokenExpiryTime
   });
 }
@@ -59,24 +59,22 @@ module.exports = {
   },
   // Verify
   verifyToken(req, res, next) {
-    const authHeader = req.headers["authorization"];
-    if (typeof authHeader !== "undefined") {
-      const auth = authHeader.split(" ");
-      const authToken = auth[1];
-      req.token = authToken;
-      next();
-    } else {
-      res.sendStatus(403);
+    const token = req.header["x-access-token"] || req.headers["authorization"];
+    console.log(token);
+    if (!token) {
+      // if no token in x-auth-header
+      return res.status(403).send("Access Denied. Please sign in first.");
     }
-    // return jwt.verify(token, config.authentication.jwtSecret);
-  },
-  // Verify User
-  verifyUserToken(req, res, next) {
-    verifyToken();
-    if (user.username == review.reviewAuthor) {
+    try {
+      // decode the token
+      const decoded = jwt.verify(token, config.get("jwtSecret"));
+      // Store decoded token in the req for next middleware to access
+      req.user = decoded;
+
       next();
-    } else {
-      res.sendStatus(403);
+    } catch (ex) {
+      // Throw an exception if the token is invalid
+      res.status(400).send("Token is invalid.");
     }
   }
 };

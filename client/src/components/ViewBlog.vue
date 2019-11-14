@@ -12,20 +12,27 @@
         </div>
         <div class="col-md-12 mt-3">
           <b>By:</b>
-          {{blog.blogAuthor}}
+          {{ blog.blogAuthor }}
         </div>
 
         <br />
 
         <div class="col-md-12 m-auto">
-          <p class="mt-2">{{blog.blogText}}</p>
+          <p class="mt-2">{{ blog.blogText }}</p>
         </div>
       </div>
       <router-link
         v-if="$store.state.isUserLoggedIn"
         :to="'/blog/' + blog.id + '/edit'"
         class="mr-2 w-100 btn btn-success"
-      >Edit</router-link>
+        >Edit</router-link
+      >
+      <b-button
+        v-if="$store.state.isUserLoggedIn"
+        @click="delBlog"
+        class="btn btn-secondary w-100 mr-2"
+        >Delete</b-button
+      >
     </panel>
   </div>
 </template>
@@ -43,16 +50,34 @@ export default {
       blog: null
     };
   },
+  methods: {
+    async delBlog() {
+      try {
+        // eslint-disable-next-line
+        console.log("delete");
+        this.blog = await BlogService.deleteBlog(this.blog.id);
+        this.blog = null;
+        // eslint-disable-next-line
+        console.log("remove");
+        this.$router.push({
+          name: "Blog"
+        });
+      } catch (err) {
+        // eslint-disable-next-line
+        console.log(err);
+      }
+    }
+  },
   async mounted() {
     try {
       const blogId = this.$store.state.route.params.blogId;
       this.blog = (await BlogService.getBlogById(blogId)).data;
     } catch (err) {
+      // eslint-disable-next-line
       console.log(err);
     }
   }
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
