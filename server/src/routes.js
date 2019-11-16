@@ -26,18 +26,18 @@ module.exports = app => {
     ReviewsControllerPolicy.postReviews,
     ReviewsController.postReviews
   );
-  app.get(
-    "/reviews/:reviewId",
-    AuthenticationController.verifyToken,
-    ReviewsController.getReviewById
-  );
+  app.get("/reviews/:reviewId", ReviewsController.getReviewById);
   app.put(
     "/reviews/:reviewId",
     AuthenticationController.verifyToken,
     ReviewsControllerPolicy.putReviewById,
     ReviewsController.putReviewById
   );
-  app.delete("/reviews/:reviewId", ReviewsController.deleteReview);
+  app.delete(
+    "/reviews/:reviewId",
+    AuthenticationController.verifyToken,
+    ReviewsController.deleteReview
+  );
 
   // Blog Routes
   app.get("/blog", BlogsController.getBlogs);

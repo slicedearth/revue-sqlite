@@ -59,18 +59,22 @@ module.exports = {
   },
   // Verify
   verifyToken(req, res, next) {
-    const token = req.header["x-access-token"] || req.headers["authorization"];
-    console.log(token);
+    let token = req.header["x-access-token"] || req.headers["authorization"];
+    // console.log(token);
     if (!token) {
       // if no token in x-auth-header
       return res.status(403).send("Access Denied. Please sign in first.");
     }
+    if (token.startsWith("Bearer ")) {
+      // Remove Bearer from string
+      token = token.slice(7, token.length).trimLeft();
+    }
     try {
       // decode the token
-      const decoded = jwt.verify(token, config.get("jwtSecret"));
+      const decoded = jwt.verify(token, config.jwtSecret);
+      console.log(decoded);
       // Store decoded token in the req for next middleware to access
       req.user = decoded;
-
       next();
     } catch (ex) {
       // Throw an exception if the token is invalid
