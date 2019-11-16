@@ -9,10 +9,11 @@ import Blogs from "@/components/Blogs";
 import CreateBlog from "@/components/CreateBlog";
 import ViewBlog from "@/components/ViewBlog";
 import EditBlog from "@/components/EditBlog";
+import NotFound from "@/components/NotFound";
 
 Vue.use(Router);
 export default new Router({
-  // mode: "history",
+  mode: "history",
   routes: [
     {
       path: "/",
@@ -58,11 +59,14 @@ export default new Router({
       path: "/blog/:blogId/edit",
       name: "editblogs",
       component: EditBlog
+    },
+    {
+      path: "/404",
+      component: NotFound
+    },
+    {
+      path: "*",
+      redirect: "/404"
     }
-    // {
-    //   path: "/user/:userId",
-    //   name: "user",
-    //   component: User
-    // }
   ]
 });

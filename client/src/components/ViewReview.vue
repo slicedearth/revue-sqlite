@@ -84,6 +84,9 @@ export default {
       this.review = (
         await ReviewService.getReviewById(reviewId, this.$store.state.token)
       ).data;
+      if (this.review == "") {
+        return this.$router.push("/404");
+      }
     } catch (err) {
       // eslint-disable-next-line
       console.log(err);

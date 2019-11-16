@@ -4,7 +4,7 @@ module.exports = {
     const schema = {
       reviewTitle: Joi.string()
         .min(5)
-        .max(40),
+        .max(150),
       reviewAuthor: Joi.string()
         .alphanum()
         .min(3)
@@ -21,7 +21,7 @@ module.exports = {
         case "reviewTitle":
           res.status(400).send({
             error:
-              "The review title is invalid, please try again. The title must be between 5 and 40 characters."
+              "The review title is invalid, please try again. The title must be between 5 and 150 characters."
           });
           break;
         case "reviewAuthor":
@@ -72,8 +72,8 @@ module.exports = {
   putReviewById(req, res, next) {
     const schema = {
       reviewTitle: Joi.string()
-        .min(10)
-        .max(40),
+        .min(5)
+        .max(150),
       reviewAuthor: Joi.string()
         .alphanum()
         .min(3)
@@ -100,7 +100,7 @@ module.exports = {
         case "reviewTitle":
           res.status(400).send({
             error:
-              "The review title is invalid, please try again. The title must be between 5 and 40 characters."
+              "The review title is invalid, please try again. The title must be between 5 and 150 characters."
           });
           break;
         case "reviewAuthor":

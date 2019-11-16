@@ -23,7 +23,7 @@
                 aria-describedby="title-feedback"
               ></b-form-input>
               <b-form-invalid-feedback id="title-feedback"
-                >This field is required and must contain at least 5
+                >This field is required and must contain between 5 and 150
                 characters.</b-form-invalid-feedback
               >
             </b-form-group>

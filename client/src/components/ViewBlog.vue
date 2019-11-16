@@ -72,6 +72,9 @@ export default {
     try {
       const blogId = this.$store.state.route.params.blogId;
       this.blog = (await BlogService.getBlogById(blogId)).data;
+      if (this.blog == "") {
+        return this.$router.push("/404");
+      }
     } catch (err) {
       // eslint-disable-next-line
       console.log(err);

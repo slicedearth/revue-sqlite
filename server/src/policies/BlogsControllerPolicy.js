@@ -18,7 +18,7 @@ module.exports = {
         case "blogTitle":
           res.status(400).send({
             error:
-              "The blog title is invalid, please try again. The title must be between 5 and 40 characters."
+              "The blog title is invalid, please try again. The title must be between 5 and 150 characters."
           });
           break;
         case "blogAuthor":
@@ -72,7 +72,7 @@ module.exports = {
         case "blogTitle":
           res.status(400).send({
             error:
-              "The blog title is invalid, please try again. The title must be between 5 and 40 characters."
+              "The blog title is invalid, please try again. The title must be between 5 and 150 characters."
           });
           break;
         case "blogAuthor":
