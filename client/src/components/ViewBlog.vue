@@ -25,14 +25,12 @@
         v-if="$store.state.isUserLoggedIn"
         :to="'/blog/' + blog.id + '/edit'"
         class="mr-2 w-100 btn btn-success"
-        >Edit</router-link
-      >
+      >Edit</router-link>
       <b-button
         v-if="$store.state.isUserLoggedIn"
         @click="delBlog"
         class="btn btn-secondary w-100 mr-2"
-        >Delete</b-button
-      >
+      >Delete</b-button>
     </panel>
   </div>
 </template>
@@ -55,7 +53,10 @@ export default {
       try {
         // eslint-disable-next-line
         console.log("delete");
-        this.blog = await BlogService.deleteBlog(this.blog.id);
+        this.blog = await BlogService.deleteBlog(
+          this.blog.id,
+          this.$store.state.token
+        );
         this.blog = null;
         // eslint-disable-next-line
         console.log("remove");
@@ -72,6 +73,7 @@ export default {
     try {
       const blogId = this.$store.state.route.params.blogId;
       this.blog = (await BlogService.getBlogById(blogId)).data;
+      // 404 Redirect
       if (this.blog == "") {
         return this.$router.push("/404");
       }
@@ -83,4 +85,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style></style>

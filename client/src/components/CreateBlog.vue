@@ -22,10 +22,10 @@
                 "
                 aria-describedby="title-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback id="title-feedback"
-                >This field is required and must contain between 5 and 150
-                characters.</b-form-invalid-feedback
-              >
+              <b-form-invalid-feedback id="title-feedback">
+                This field is required and must contain between 5 and 150
+                characters.
+              </b-form-invalid-feedback>
             </b-form-group>
             <!-- Author -->
             <b-form-group
@@ -45,10 +45,10 @@
                 "
                 aria-describedby="author-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback id="author-feedback"
-                >This field is required and must contain between 3 and 20
-                alphanumeric characters.</b-form-invalid-feedback
-              >
+              <b-form-invalid-feedback id="author-feedback">
+                This field is required and must contain between 3 and 20
+                alphanumeric characters.
+              </b-form-invalid-feedback>
             </b-form-group>
             <!-- Blog Image -->
             <b-form-group
@@ -61,14 +61,15 @@
                 id="blogIMG"
                 type="text"
                 required
+                placeholder="Enter Image Link"
                 v-model="$v.blog.blogIMG.$model"
                 :state="$v.blog.blogIMG.$dirty ? !$v.blog.blogIMG.$error : null"
                 aria-describedby="blogIMG-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback id="blogIMG-feedback"
-                >This field is required. You must provide a link to an
-                image.</b-form-invalid-feedback
-              >
+              <b-form-invalid-feedback id="blogIMG-feedback">
+                This field is required. You must provide a link to an
+                image.
+              </b-form-invalid-feedback>
             </b-form-group>
             <!-- Blog Text -->
             <b-form-group
@@ -90,10 +91,10 @@
                 "
                 aria-describedby="blogText-feedback"
               ></b-form-textarea>
-              <b-form-invalid-feedback id="blogText-feedback"
-                >This field is required and must contain at least 15
-                characters.</b-form-invalid-feedback
-              >
+              <b-form-invalid-feedback id="blogText-feedback">
+                This field is required and must contain at least 15
+                characters.
+              </b-form-invalid-feedback>
             </b-form-group>
             <div class="col-12">
               <b-button @click="create" class="w-100">Submit</b-button>
@@ -154,6 +155,12 @@ export default {
       }
     }
   },
+  // Authentication Redirect
+  // mounted() {
+  //   if (!this.$store.state.isUserLoggedIn) {
+  //     return this.$router.push("/403");
+  //   }
+  // },
   methods: {
     async create() {
       this.$v.blog.$touch();
@@ -161,7 +168,7 @@ export default {
         return;
       }
       try {
-        await BlogService.postBlogs(this.blog);
+        await BlogService.postBlogs(this.blog, this.$store.state.token);
         this.$router.push({
           name: "Blog"
         });

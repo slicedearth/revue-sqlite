@@ -10,6 +10,7 @@ import CreateBlog from "@/components/CreateBlog";
 import ViewBlog from "@/components/ViewBlog";
 import EditBlog from "@/components/EditBlog";
 import NotFound from "@/components/NotFound";
+import AccessDenied from "@/components/AccessDenied";
 
 Vue.use(Router);
 export default new Router({
@@ -59,6 +60,10 @@ export default new Router({
       path: "/blog/:blogId/edit",
       name: "editblogs",
       component: EditBlog
+    },
+    {
+      path: "/403",
+      component: AccessDenied
     },
     {
       path: "/404",

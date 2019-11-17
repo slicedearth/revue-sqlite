@@ -24,10 +24,10 @@
                 "
                 aria-describedby="title-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback id="title-feedback"
-                >This field is required and must contain between 5 and 150
-                characters.</b-form-invalid-feedback
-              >
+              <b-form-invalid-feedback id="title-feedback">
+                This field is required and must contain between 5 and 150
+                characters.
+              </b-form-invalid-feedback>
             </b-form-group>
             <!-- Author -->
             <b-form-group
@@ -49,10 +49,10 @@
                 "
                 aria-describedby="author-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback id="author-feedback"
-                >This field is required and must contain between 3 and 20
-                alphanumeric characters.</b-form-invalid-feedback
-              >
+              <b-form-invalid-feedback id="author-feedback">
+                This field is required and must contain between 3 and 20
+                alphanumeric characters.
+              </b-form-invalid-feedback>
             </b-form-group>
             <!-- Album -->
             <b-form-group
@@ -70,10 +70,10 @@
                 :state="$v.review.album.$dirty ? !$v.review.album.$error : null"
                 aria-describedby="album-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback id="album-feedback"
-                >This field is required and must contain at least 1
-                character.</b-form-invalid-feedback
-              >
+              <b-form-invalid-feedback id="album-feedback">
+                This field is required and must contain at least 1
+                character.
+              </b-form-invalid-feedback>
             </b-form-group>
             <!-- Artist -->
             <b-form-group
@@ -93,10 +93,10 @@
                 "
                 aria-describedby="artist-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback id="artist-feedback"
-                >This field is required and must contain at least 1
-                character.</b-form-invalid-feedback
-              >
+              <b-form-invalid-feedback id="artist-feedback">
+                This field is required and must contain at least 1
+                character.
+              </b-form-invalid-feedback>
             </b-form-group>
             <!-- Genre -->
             <b-form-group
@@ -114,10 +114,10 @@
                 :state="$v.review.genre.$dirty ? !$v.review.genre.$error : null"
                 aria-describedby="genre-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback id="genre-feedback"
-                >This field is required and must contain at least 1
-                character.</b-form-invalid-feedback
-              >
+              <b-form-invalid-feedback id="genre-feedback">
+                This field is required and must contain at least 1
+                character.
+              </b-form-invalid-feedback>
             </b-form-group>
             <!-- Album Art -->
             <b-form-group
@@ -136,10 +136,10 @@
                 "
                 aria-describedby="albumArt-feedback"
               ></b-form-input>
-              <b-form-invalid-feedback id="albumArt-feedback"
-                >This field is required. You must provide a link to an
-                image.</b-form-invalid-feedback
-              >
+              <b-form-invalid-feedback id="albumArt-feedback">
+                This field is required. You must provide a link to an
+                image.
+              </b-form-invalid-feedback>
             </b-form-group>
             <!-- Review Text -->
             <b-form-group
@@ -163,10 +163,10 @@
                 "
                 aria-describedby="reviewText-feedback"
               ></b-form-textarea>
-              <b-form-invalid-feedback id="artist-feedback"
-                >This field is required and must contain at least 15
-                characters.</b-form-invalid-feedback
-              >
+              <b-form-invalid-feedback id="artist-feedback">
+                This field is required and must contain at least 15
+                characters.
+              </b-form-invalid-feedback>
             </b-form-group>
             <div class="col-12">
               <b-button @click="save" class="w-100">Submit</b-button>
@@ -270,6 +270,14 @@ export default {
     try {
       const reviewId = this.$store.state.route.params.reviewId;
       this.review = (await ReviewService.getReviewById(reviewId)).data;
+      // 404 Redirect
+      if (this.review == "") {
+        return this.$router.push("/404");
+      }
+      // Authentication Redirect
+      if (!this.$store.state.isUserLoggedIn) {
+        return this.$router.push("/403");
+      }
     } catch (error) {
       console.log(error);
     }
