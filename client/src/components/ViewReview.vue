@@ -1,28 +1,28 @@
 <template>
   <div>
-    <!-- Edit and Delete Buttons -->
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <router-link
-          v-if="$store.state.isUserLoggedIn"
-          :to="'/reviews/' + review.id + '/edit'"
-          class="w-50 btn btn-success mx-auto my-3"
-        >
-          <i class="fa fa-pencil" aria-hidden="true"></i>Edit
-        </router-link>
-      </div>
-      <div class="col-md-12 text-center">
-        <b-button
-          v-if="$store.state.isUserLoggedIn"
-          @click="delRev"
-          class="btn btn-secondary w-50 mx-auto p-3"
-        >
-          <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete
-        </b-button>
-      </div>
-    </div>
-    <!-- Review -->
     <panel :title="review.reviewTitle" v-if="review">
+      <!-- Edit and Delete Buttons -->
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <router-link
+            v-if="$store.state.isUserLoggedIn"
+            :to="'/reviews/' + review.id + '/edit'"
+            class="w-50 btn btn-success mx-auto my-3"
+          >
+            <i class="fa fa-pencil" aria-hidden="true"></i>Edit
+          </router-link>
+        </div>
+        <div class="col-md-12 text-center">
+          <b-button
+            v-if="$store.state.isUserLoggedIn"
+            @click="delRev"
+            class="btn btn-secondary w-50 mx-auto p-3"
+          >
+            <i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete
+          </b-button>
+        </div>
+      </div>
+      <!-- Review -->
       <div class="row p-5">
         <div class="col-md-12">
           <img
@@ -88,7 +88,6 @@ export default {
   async mounted() {
     try {
       const reviewId = this.$store.state.route.params.reviewId;
-      console.log(reviewId);
       this.review = (await ReviewService.getReviewById(reviewId)).data;
       // 404 Redirect
       if (this.review == "") {

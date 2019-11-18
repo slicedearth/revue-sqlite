@@ -17,7 +17,7 @@
             <img :src="review.albumArt" alt class="img-fluid p-2" />
             <b-card-text>{{ review.album }}</b-card-text>
             <b-card-text>{{ review.artist }}</b-card-text>
-            <b-card-text>By&nbsp;{{ review.reviewAuthor }}</b-card-text>
+            <b-card-text>Reviewed By&nbsp;{{ review.reviewAuthor }}</b-card-text>
             <router-link :to="'/reviews/' + review.id" class="btn btn-primary d-block">Full Review</router-link>
           </b-card>
         </div>

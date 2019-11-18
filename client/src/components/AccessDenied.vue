@@ -11,7 +11,7 @@
 <script>
 import Panel from "@/components/Panel";
 export default {
-  name: "Access Denied",
+  name: "AccessDenied",
   components: {
     Panel
   }

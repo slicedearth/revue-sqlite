@@ -1,7 +1,25 @@
 <template>
   <div>
     <panel :title="blog.blogTitle" v-if="blog">
+      <!-- Edit and Delete Buttons -->
       <div class="row">
+        <div class="col-md-12 tet-center">
+          <router-link
+            v-if="$store.state.isUserLoggedIn"
+            :to="'/blog/' + blog.id + '/edit'"
+            class="mr-2 w-100 btn btn-success"
+          >Edit</router-link>
+        </div>
+        <div class="col-md-12 text-center">
+          <b-button
+            v-if="$store.state.isUserLoggedIn"
+            @click="delBlog"
+            class="btn btn-secondary w-100 mr-2"
+          >Delete</b-button>
+        </div>
+      </div>
+      <!-- Blog Post -->
+      <div class="row p-5">
         <div class="col-md-12">
           <img
             :src="blog.blogIMG"
@@ -21,16 +39,6 @@
           <p class="mt-2">{{ blog.blogText }}</p>
         </div>
       </div>
-      <router-link
-        v-if="$store.state.isUserLoggedIn"
-        :to="'/blog/' + blog.id + '/edit'"
-        class="mr-2 w-100 btn btn-success"
-      >Edit</router-link>
-      <b-button
-        v-if="$store.state.isUserLoggedIn"
-        @click="delBlog"
-        class="btn btn-secondary w-100 mr-2"
-      >Delete</b-button>
     </panel>
   </div>
 </template>

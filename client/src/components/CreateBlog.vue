@@ -67,8 +67,10 @@
                 aria-describedby="blogIMG-feedback"
               ></b-form-input>
               <b-form-invalid-feedback id="blogIMG-feedback">
-                This field is required. You must provide a link to an
-                image.
+                This field is required. You must provide a direct link to an
+                image. The link must contain http:// or https://
+                <br />(eg.
+                https://images.unsplash.com/photo-1573061598644-36432d1a4198)
               </b-form-invalid-feedback>
             </b-form-group>
             <!-- Blog Text -->
@@ -114,7 +116,8 @@ import {
   required,
   minLength,
   maxLength,
-  alphaNum
+  alphaNum,
+  url
 } from "vuelidate/lib/validators";
 export default {
   name: "CreateBlog",
@@ -141,6 +144,7 @@ export default {
       },
       blogIMG: {
         required,
+        url: url,
         minLength: minLength(5)
       },
       blogAuthor: {
@@ -155,12 +159,12 @@ export default {
       }
     }
   },
-  // Authentication Redirect
-  // mounted() {
-  //   if (!this.$store.state.isUserLoggedIn) {
-  //     return this.$router.push("/403");
-  //   }
-  // },
+  //Authentication Redirect
+  mounted() {
+    if (!this.$store.state.isUserLoggedIn) {
+      return this.$router.push("/403");
+    }
+  },
   methods: {
     async create() {
       this.$v.blog.$touch();
