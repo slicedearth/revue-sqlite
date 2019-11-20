@@ -9,7 +9,6 @@ export default {
     });
   },
   postReviews(reviews, token) {
-    // console.log(token);
     return Api().post("reviews", reviews, {
       headers: { Authorization: "Bearer " + token }
     });
