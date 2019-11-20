@@ -16,12 +16,12 @@
               <b-card-text>By&nbsp;{{ review.reviewAuthor }}</b-card-text>
               <img :src="review.albumArt" alt class="img-fluid p-2" />
               <br />
-              <router-link :to="'/reviews/' + review.id" class="btn btn-primary">Full Review</router-link>
+              <router-link :to="'/reviews/' + review.id" class="btn btn-info">Full Review</router-link>
             </b-card>
           </div>
           <router-link
             to="/reviews"
-            class="col-md-12 btn btn-primary mb-2 mx-auto"
+            class="col-md-12 btn btn-secondary mb-2 mx-auto"
             id="moreRev"
             style="max-width:90%"
           >See More Reviews</router-link>
@@ -37,12 +37,12 @@
               <b-card-text>by&nbsp;{{ blog.blogAuthor }}</b-card-text>
               <img :src="blog.blogIMG" alt class="img-fluid p-2" />
               <br />
-              <router-link :to="'/blog/' + blog.id" class="btn btn-primary">Read Blog</router-link>
+              <router-link :to="'/blog/' + blog.id" class="btn btn-info">Read Blog</router-link>
             </b-card>
           </div>
           <router-link
             to="/blog"
-            class="col-md-12 btn btn-primary mb-2 mx-auto"
+            class="col-md-12 btn btn-secondary mb-2 mx-auto"
             style="max-width:90%"
           >See More Blog Posts</router-link>
         </div>
@@ -74,7 +74,4 @@ export default {
 </script>
 
 <style>
-/* #moreRev,
-#morePosts {
-} */
 </style>

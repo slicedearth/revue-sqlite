@@ -7,18 +7,27 @@
           <router-link
             v-if="$store.state.isUserLoggedIn"
             to="/reviews/create"
-            class="btn btn-warning mx-auto w-100 my-3"
-          >Post Review</router-link>
+            class="btn btn-success mx-auto w-100 my-3"
+          >Create Review</router-link>
         </div>
       </div>
       <div class="row mx-auto" style="max-width: 90%">
         <div class="col-12 col-md-6 col-lg-4" v-for="review in reviews" :key="review.id">
           <b-card :title="review.reviewTitle" class="mb-2 mx-auto">
             <img :src="review.albumArt" alt class="img-fluid p-2" />
-            <b-card-text>{{ review.album }}</b-card-text>
-            <b-card-text>{{ review.artist }}</b-card-text>
-            <b-card-text>Reviewed By&nbsp;{{ review.reviewAuthor }}</b-card-text>
-            <router-link :to="'/reviews/' + review.id" class="btn btn-primary d-block">Full Review</router-link>
+            <b-card-text>
+              <span class="font-weight-bold">Album:</span>
+              {{ review.album }}
+            </b-card-text>
+            <b-card-text>
+              <span class="font-weight-bold">Artist:</span>
+              {{ review.artist }}
+            </b-card-text>
+            <b-card-text>
+              <span class="font-weight-bold">Reviewed By:</span>
+              {{ review.reviewAuthor }}
+            </b-card-text>
+            <router-link :to="'/reviews/' + review.id" class="btn btn-info d-block">Full Review</router-link>
           </b-card>
         </div>
       </div>

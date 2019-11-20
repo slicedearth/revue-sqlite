@@ -33,7 +33,7 @@
         v-html="error"
         class="error mt-3"
       >Lorem ipsum dolor sit amet, consectetur adipisicing elit.</b-card-text>
-      <b-button variant="primary" @click="register" class="w-100">Register</b-button>
+      <b-button variant="info" @click="register" class="w-100">Register</b-button>
     </b-modal>
   </div>
 </template>

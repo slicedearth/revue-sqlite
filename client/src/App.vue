@@ -2,8 +2,6 @@
   <div id="app">
     <app-header />
     <router-view />
-    <!-- <img alt="Vue logo" src="./assets/logo.png" />
-    <Home msg="Welcome to Your Vue.js App" />-->
     <app-footer />
   </div>
 </template>

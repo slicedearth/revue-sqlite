@@ -1,10 +1,6 @@
 <template>
   <div>
-    <button
-      v-if="!$store.state.isUserLoggedIn"
-      @click="showModal"
-      class="btn btn-primary mr-2"
-    >Login</button>
+    <button v-if="!$store.state.isUserLoggedIn" @click="showModal" class="btn btn-info mr-2">Login</button>
     <b-modal ref="lginModal" centered title="Login" hide-footer>
       <b-form-input
         name="email"
@@ -24,7 +20,7 @@
         v-html="error"
         class="error mt-3"
       >Lorem ipsum dolor sit amet, consectetur adipisicing elit.</b-card-text>
-      <b-button variant="primary" @click="login" class="w-100">Login</b-button>
+      <b-button variant="info" @click="login" class="w-100">Login</b-button>
     </b-modal>
   </div>
 </template>

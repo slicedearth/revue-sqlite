@@ -1,6 +1,6 @@
 <template>
   <div class="bg-light">
-    <b-navbar toggleable="lg" type="dark" variant="info" fixed="top">
+    <b-navbar toggleable="lg" type="dark" class="primecolour" fixed="top">
       <router-link to="/">
         <b-navbar-brand>ReVue</b-navbar-brand>
       </router-link>
@@ -46,4 +46,7 @@ export default {
 </script>
 
 <style>
+.primecolour {
+  background-color: #5b8c89;
+}
 </style>
