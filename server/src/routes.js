@@ -4,7 +4,6 @@ const AuthenticationControllerPolicy = require("./policies/AuthenticationControl
 const BlogsController = require("./controllers/BlogsController");
 const ReviewsControllerPolicy = require("./policies/ReviewsControllerPolicy");
 const BlogsControllerPolicy = require("./policies/BlogsControllerPolicy");
-const UserController = require("./controllers/UserController");
 module.exports = app => {
   // Authentication Routes
   app.post(
@@ -13,10 +12,6 @@ module.exports = app => {
     AuthenticationController.register
   );
   app.post("/login", AuthenticationController.login);
-
-  // User Routes
-  app.put("/user/:userId", UserController.putUserById);
-  app.delete("/user/:userId", UserController.deleteUser);
 
   // Review Routes
   app.get("/reviews", ReviewsController.getReviews);

@@ -94,7 +94,6 @@ module.exports = {
       reviewText: req.body.reviewText
     };
     const { error, value } = Joi.validate(revUpd, schema);
-    console.log(error);
     if (error) {
       switch (error.details[0].context.key) {
         case "reviewTitle":
