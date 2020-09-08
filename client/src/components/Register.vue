@@ -5,7 +5,9 @@
       v-if="!$store.state.isUserLoggedIn"
       @click="showModal"
       class="btn btn-secondary mr-2"
-    >Register</button>
+    >
+      Register
+    </button>
     <!-- Register Modal -->
     <b-modal ref="regModal" centered title="Register" hide-footer>
       <b-form-input
@@ -14,6 +16,7 @@
         placeholder="Enter Email"
         v-model="email"
         class="mb-3"
+        @keydown.native.enter="register"
       ></b-form-input>
       <b-form-input
         type="text"
@@ -21,6 +24,7 @@
         placeholder="Enter Username"
         v-model="username"
         class="mb-3"
+        @keydown.native.enter="register"
       ></b-form-input>
       <b-form-input
         type="password"
@@ -28,12 +32,14 @@
         placeholder="Enter Password"
         v-model="password"
         class="mb-3"
+        @keydown.native.enter="register"
       ></b-form-input>
-      <b-card-text
-        v-html="error"
-        class="error mt-3"
-      >Lorem ipsum dolor sit amet, consectetur adipisicing elit.</b-card-text>
-      <b-button variant="info" @click="register" class="w-100">Register</b-button>
+      <b-card-text v-html="error" class="error mt-3"
+        >Lorem ipsum dolor sit amet, consectetur adipisicing elit.</b-card-text
+      >
+      <b-button variant="info" @click="register" class="w-100"
+        >Register</b-button
+      >
     </b-modal>
   </div>
 </template>
@@ -47,7 +53,7 @@ export default {
       email: "",
       username: "",
       password: "",
-      error: null
+      error: null,
     };
   },
   methods: {
@@ -59,7 +65,7 @@ export default {
         const response = await AuthenticationService.register({
           email: this.email,
           username: this.username,
-          password: this.password
+          password: this.password,
         });
         // console.log(this.$store);
         this.$store.dispatch("setToken", response.data.token);
@@ -68,10 +74,9 @@ export default {
       } catch (error) {
         this.error = error.response.data.error;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

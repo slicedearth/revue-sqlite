@@ -1,5 +1,5 @@
 <template>
-  <b-form-input v-model="search" placeholder="Search by Artist, Album, Genre or Author"></b-form-input>
+  <b-form-input v-model="search" placeholder="Filter by Artist, Album, Genre or Reviewer"></b-form-input>
 </template>
 
 <script>
@@ -7,17 +7,17 @@ export default {
   name: "SearchReviews",
   data() {
     return {
-      search: ""
+      search: "",
     };
   },
   watch: {
-    search(value) {
+    search() {
       const route = {
-        name: "Review"
+        name: "Review",
       };
       if (this.search !== "") {
         route.query = {
-          search: this.search
+          search: this.search,
         };
       }
       this.$router.push(route);
@@ -26,9 +26,9 @@ export default {
       immediate: true,
       handler(value) {
         this.search = value;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 

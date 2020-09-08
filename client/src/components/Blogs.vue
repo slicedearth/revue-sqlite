@@ -1,26 +1,44 @@
 <template>
   <div>
-    <panel title="Blog">
-      <div class="row mx-auto">
-        <div class="col-md-12 mb-2 mx-auto" style="max-width:90%">
+    <panel title="Blog" class="pt-3">
+      <div class="row mx-auto mt-3">
+        <div class="col-md-12 content-width">
           <SearchBlogs />
           <router-link
             v-if="$store.state.isUserLoggedIn"
             to="/blog/create"
-            class="btn btn-success mx-auto w-100 my-3"
-          >Create Blog Post</router-link>
+            class="btn btn-success mx-auto w-100 mt-4"
+            >Create Blog Post</router-link
+          >
         </div>
       </div>
-      <div class="row mx-auto" style="max-width: 90%">
-        <div class="col-12 col-md-6 col-lg-4" v-for="blog in blogs" :key="blog.id">
-          <b-card :title="blog.blogTitle" class="mb-2 mx-auto">
-            <img :src="blog.blogIMG" alt class="img-fluid p-2" />
-            <b-card-text>
-              <span class="font-weight-bold">Written By:</span>
-              {{ blog.blogAuthor }}
-            </b-card-text>
-            <router-link :to="'/blog/' + blog.id" class="btn btn-info d-block">Read Blog</router-link>
-          </b-card>
+      <div class="row mx-auto">
+        <div class="col-md-12 content-width">
+          <div class="band py-3">
+            <div
+              class="crad"
+              v-for="blog in blogs.slice().reverse()"
+              :key="blog.id"
+            >
+              <router-link
+                :to="'/blog/' + blog.id"
+                class="text-decoration-none pb-3"
+              >
+                <div
+                  class="thumb"
+                  v-bind:style="{
+                    backgroundImage: 'url(' + blog.blogIMG + ')',
+                  }"
+                >
+                  <p class="crad-badge font-weight-bold text-truncate">
+                    Author:
+                    <span>{{ blog.blogAuthor }}</span>
+                  </p>
+                </div>
+                <h1 class="blogTitle mt-2">{{ blog.blogTitle }}</h1>
+              </router-link>
+            </div>
+          </div>
         </div>
       </div>
     </panel>
@@ -35,11 +53,11 @@ export default {
   name: "Blog",
   components: {
     Panel,
-    SearchBlogs
+    SearchBlogs,
   },
   data() {
     return {
-      blogs: ""
+      blogs: "",
     };
   },
   watch: {
@@ -47,10 +65,16 @@ export default {
       immediate: true,
       async handler(value) {
         this.blogs = (await BlogService.getBlogs(value)).data;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 
-<style></style>
+<style>
+.blogTitle {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+}
+</style>

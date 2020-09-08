@@ -1,5 +1,5 @@
 <template>
-  <b-form-input v-model="search" placeholder="Search by Title, Author or Keywords"></b-form-input>
+  <b-form-input v-model="search" placeholder="Filter by Title, Author or Keywords"></b-form-input>
 </template>
 
 <script>
@@ -7,17 +7,17 @@ export default {
   name: "SearchBlogs",
   data() {
     return {
-      search: ""
+      search: "",
     };
   },
   watch: {
-    search(value) {
+    search() {
       const route = {
-        name: "Blog"
+        name: "Blog",
       };
       if (this.search !== "") {
         route.query = {
-          search: this.search
+          search: this.search,
         };
       }
       this.$router.push(route);
@@ -26,9 +26,9 @@ export default {
       immediate: true,
       handler(value) {
         this.search = value;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 

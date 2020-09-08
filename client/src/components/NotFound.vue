@@ -13,8 +13,8 @@ import Panel from "@/components/Panel";
 export default {
   name: "NotFound",
   components: {
-    Panel
-  }
+    Panel,
+  },
 };
 </script>
 <style></style>

@@ -1,21 +1,16 @@
 <template>
   <div>
-    <panel title="Edit Blog Post">
+    <panel title="Edit Blog Post" class="pt-3">
       <b-form>
-        <div class="row">
+        <div class="row mt-3">
           <div class="col-12 mx-auto" style="max-width:75%">
             <!-- Title -->
-            <b-form-group
-              id="title-group"
-              label="Title"
-              label-for="title"
-              description="Update the title for your blog post"
-            >
+            <b-form-group id="title-group" label="Title" label-for="title">
               <b-form-input
                 id="title"
                 type="text"
                 required
-                placeholder="Enter Title"
+                placeholder="Update Blog Post Title"
                 v-model="$v.blog.blogTitle.$model"
                 :state="
                   $v.blog.blogTitle.$dirty ? !$v.blog.blogTitle.$error : null
@@ -28,17 +23,12 @@
               </b-form-invalid-feedback>
             </b-form-group>
             <!-- Author -->
-            <b-form-group
-              id="author-group"
-              label="Author"
-              label-for="author"
-              description="Update your username"
-            >
+            <b-form-group id="author-group" label="Author" label-for="author">
               <b-form-input
                 id="author"
                 type="text"
                 required
-                placeholder="Enter Username"
+                placeholder="Update Your Name / Alias"
                 v-model="$v.blog.blogAuthor.$model"
                 :state="
                   $v.blog.blogAuthor.$dirty ? !$v.blog.blogAuthor.$error : null
@@ -55,19 +45,18 @@
               id="blogIMG-group"
               label="Blog Post Image"
               label-for="blogIMG"
-              description="Provide the updated url of the blog post image."
             >
               <b-form-input
                 id="blogIMG"
                 type="text"
                 required
                 v-model="$v.blog.blogIMG.$model"
+                placeholder="Update Blog Post Image URL"
                 :state="$v.blog.blogIMG.$dirty ? !$v.blog.blogIMG.$error : null"
                 aria-describedby="blogIMG-feedback"
               ></b-form-input>
               <b-form-invalid-feedback id="blogIMG-feedback">
-                This field is required. You must provide a link to an
-                image.
+                This field is required. You must provide a link to an image.
               </b-form-invalid-feedback>
             </b-form-group>
             <!-- Blog Text -->
@@ -75,13 +64,12 @@
               id="blogText-group"
               label="Blog Text"
               label-for="blogText"
-              description="Update your blog post"
             >
               <b-form-textarea
                 id="blogText"
                 type="text"
                 required
-                placeholder="Enter Blog Post"
+                placeholder="Update Blog Post"
                 rows="10"
                 max-rows="15"
                 v-model="$v.blog.blogText.$model"
@@ -91,13 +79,10 @@
                 aria-describedby="blogText-feedback"
               ></b-form-textarea>
               <b-form-invalid-feedback id="blogText-feedback">
-                This field is required and must contain at least 15
-                characters.
+                This field is required and must contain at least 15 characters.
               </b-form-invalid-feedback>
             </b-form-group>
-            <div class="col-12">
-              <b-button @click="save" class="w-100">Submit</b-button>
-            </div>
+            <b-button @click="save" class="w-100 mb-4">Submit</b-button>
           </div>
         </div>
       </b-form>
@@ -113,12 +98,12 @@ import {
   required,
   minLength,
   maxLength,
-  alphaNum
+  alphaNum,
 } from "vuelidate/lib/validators";
 export default {
   name: "EditBlog",
   components: {
-    Panel
+    Panel,
   },
   data() {
     return {
@@ -126,8 +111,8 @@ export default {
         blogTitle: null,
         blogIMG: null,
         blogAuthor: null,
-        blogText: null
-      }
+        blogText: null,
+      },
     };
   },
   mixins: [validationMixin],
@@ -136,23 +121,23 @@ export default {
       blogTitle: {
         required,
         minLength: minLength(5),
-        maxLength: maxLength(150)
+        maxLength: maxLength(150),
       },
       blogIMG: {
         required,
-        minLength: minLength(5)
+        minLength: minLength(5),
       },
       blogAuthor: {
         required,
         minLength: minLength(3),
         maxLength: maxLength(20),
-        alphaNum: alphaNum
+        alphaNum: alphaNum,
       },
       blogText: {
         required,
-        minLength: minLength(15)
-      }
-    }
+        minLength: minLength(15),
+      },
+    },
   },
   methods: {
     async save() {
@@ -169,13 +154,13 @@ export default {
         this.$router.push({
           name: "viewblogs",
           params: {
-            blogId: this.$store.state.route.params.blogId
-          }
+            blogId: this.$store.state.route.params.blogId,
+          },
         });
       } catch (err) {
         console.log(err);
       }
-    }
+    },
   },
   async mounted() {
     try {
@@ -192,7 +177,7 @@ export default {
     } catch (err) {
       console.log(err);
     }
-  }
+  },
 };
 </script>
 

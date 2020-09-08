@@ -1,6 +1,13 @@
 <template>
   <div>
-    <button v-if="!$store.state.isUserLoggedIn" @click="showModal" class="btn btn-info mr-2">Login</button>
+    <b-button
+      v-if="!$store.state.isUserLoggedIn"
+      @click="showModal"
+      variant="info"
+      class=" mr-2"
+    >
+      Login
+    </b-button>
     <b-modal ref="lginModal" centered title="Login" hide-footer>
       <b-form-input
         name="email"
@@ -8,6 +15,7 @@
         placeholder="Enter Email"
         v-model="email"
         class="mb-3"
+        @keydown.native.enter="login"
       ></b-form-input>
       <b-form-input
         type="password"
@@ -15,11 +23,11 @@
         placeholder="Enter Password"
         v-model="password"
         class="mb-3"
+        @keydown.native.enter="login"
       ></b-form-input>
-      <b-card-text
-        v-html="error"
-        class="error mt-3"
-      >Lorem ipsum dolor sit amet, consectetur adipisicing elit.</b-card-text>
+      <b-card-text v-html="error" class="error mt-3"
+        >Lorem ipsum dolor sit amet, consectetur adipisicing elit.</b-card-text
+      >
       <b-button variant="info" @click="login" class="w-100">Login</b-button>
     </b-modal>
   </div>
@@ -33,7 +41,7 @@ export default {
     return {
       email: "",
       password: "",
-      error: null
+      error: null,
     };
   },
   methods: {
@@ -44,7 +52,7 @@ export default {
       try {
         const response = await AuthenticationService.login({
           email: this.email,
-          password: this.password
+          password: this.password,
         });
         this.$store.dispatch("setToken", response.data.token);
         this.$store.dispatch("setUser", response.data.user);
@@ -52,8 +60,8 @@ export default {
       } catch (error) {
         this.error = error.response.data.error;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style>

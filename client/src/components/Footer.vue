@@ -1,5 +1,5 @@
 <template>
-  <footer class="primecolour position-fixed-bottom">
+  <footer class="position-fixed-bottom">
     <div class="col-md-12">
       <a href="https://www.facebook.com">
         <i class="fa fa-facebook" aria-hidden="true"></i>
@@ -14,7 +14,7 @@
         <i class="fa fa-github" aria-hidden="true"></i>
       </a>
     </div>
-    &copy;&nbsp;{{ new Date().getFullYear() }}&nbsp;ReVue
+    &copy;&nbsp;{{ new Date().getFullYear() }}&nbsp;slicedearth
   </footer>
 </template>
 
@@ -26,5 +26,10 @@ export default {};
 a i {
   color: white;
   padding: 1rem 0.25rem;
+}
+footer {
+  background-color: #343a40;
+  text-align: center;
+  color: white;
 }
 </style>
