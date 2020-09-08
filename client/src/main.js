@@ -1,6 +1,7 @@
 import Vue from "vue";
 import BootstrapVue from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.css";
+// import "bootstrap/dist/css/bootstrap.css";
+import "./styles/main.scss";
 import "bootstrap-vue/dist/bootstrap-vue.min.css";
 import { sync } from "vuex-router-sync";
 import App from "./App.vue";
@@ -14,7 +15,7 @@ Vue.use(Vuelidate);
 sync(store, router);
 
 new Vue({
-  render: h => h(App),
+  render: (h) => h(App),
   router,
-  store
+  store,
 }).$mount("#app");

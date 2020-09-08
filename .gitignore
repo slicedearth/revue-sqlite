@@ -1,9 +1,11 @@
 .DS_Store
 /client/node_modules
 /server/node_modules
+/server/revueDB.sqlite
 /dist
 
 # local env files
+.env
 .env.local
 .env.*.local
 
